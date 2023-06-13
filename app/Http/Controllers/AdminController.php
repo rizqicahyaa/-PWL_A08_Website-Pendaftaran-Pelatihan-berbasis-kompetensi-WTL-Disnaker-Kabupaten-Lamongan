@@ -87,8 +87,8 @@ class AdminController extends Controller
             'email' => $request->email,
             'nik' => $request->nik,
             'nohp'  => $request->nohp,
-            'alamatktp' => $request->alamatdomisili,
-            'alamatdomisili' => $request->alamatktp,
+            'alamatktp' => $request->alamatktp,
+            'alamatdomisili' => $request->alamatdomisili,
             'pasfoto' => $filename
         ]);
 
