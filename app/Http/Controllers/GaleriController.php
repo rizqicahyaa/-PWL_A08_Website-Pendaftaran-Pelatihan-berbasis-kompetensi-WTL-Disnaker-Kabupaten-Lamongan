@@ -116,7 +116,8 @@ class GaleriController extends Controller
             $oldImage = $galeri->gambar1;
             Storage::delete($oldImage);
             $galeri->gambar1 = $filename1;
-        } elseif ($request->hasFile('gambar2')) {
+        }
+        if ($request->hasFile('gambar2')) {
             $file = $request->file('gambar2');
             $filename2 = date('Y-m-d') . $file->getClientOriginalName();
             $location = public_path('storage/foto-galeri');
@@ -124,7 +125,8 @@ class GaleriController extends Controller
             $oldImage = $galeri->gambar2;
             Storage::delete($oldImage);
             $galeri->gambar2 = $filename2;
-        } else {
+        }
+        if ($request->hasFile('gambar3')){
             $file = $request->file('gambar3');
             $filename3 = date('Y-m-d') . $file->getClientOriginalName();
             $location = public_path('storage/foto-galeri');
@@ -135,7 +137,11 @@ class GaleriController extends Controller
         }
 
         $galeri->save();
-
+        
+        $galeri = GaleriModel::join('pelatihan','pelatihan.id','=','galeri.pelatihan_id')->where('galeri.id', '=', $request->id)->update([
+            'pelatihan_id' => $request->pelatihan_id
+        ]);
+        
         //redirect to index
         return redirect('/admin/galeri')->with(['success' => 'Data Berhasil Diubah!']);
     }
