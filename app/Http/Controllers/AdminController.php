@@ -119,7 +119,8 @@ class AdminController extends Controller
             $oldImage1 = $datapeserta->ijazah;
             Storage::delete($oldImage1);
             $datapeserta->ijazah = $filename1;
-        } elseif ($request->hasFile('ktp')) {
+        }
+        if ($request->hasFile('ktp')) {
             $file = $request->file('ktp');
             $filename2 = date('Y-m-d') . $file->getClientOriginalName();
             $location = public_path('storage/foto-user');
@@ -127,7 +128,8 @@ class AdminController extends Controller
             $oldImage2 = $datapeserta->ktp;
             Storage::delete($oldImage2);
             $datapeserta->ktp = $filename2;
-        } else {
+        }
+        if ($request->hasFile('skd')){
             $file = $request->file('skd');
             $filename3 = date('Y-m-d') . $file->getClientOriginalName();
             $location = public_path('storage/foto-user');
@@ -138,7 +140,7 @@ class AdminController extends Controller
         }
 
         $datapeserta->save();
-
+        
         //redirect to index
         return redirect('/profil')->with(['success' => 'Data Berhasil Diubah!']);
     }
