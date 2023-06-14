@@ -82,8 +82,8 @@ class PesertaController extends Controller
             'nik' => $request->nik,
             'nohp'  => $request->nohp,
             'alamatktp' => $request->alamatdomisili,
-            'alamatdomisili' => $request->alamatktp
-            // 'pasfoto' => $filename
+            'alamatdomisili' => $request->alamatktp,
+            'pasfoto' => $filename
         ]);
 
         //mengalihkan halaman ke data peserta
